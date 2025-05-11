@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al Nahar Steel LLC - Professional Steel Fabrication Services in Dubai</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2e8b57',
+                        secondary: '#2c3e50',
+                        dark: '#1a1a1a',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .service-card:hover img {
+            transform: scale(1.1);
+            transition: transform 0.5s ease;
+        }
+        .service-card:hover h3 {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 87vh;
+            overflow: hidden;
+        }
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 0;
+            object-fit: cover;
+        }
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 87vh;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+        .video-content {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800">
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4">
+            <!-- Top Bar -->
+            <div class="hidden md:flex justify-between py-2 border-b border-gray-200">
+                <div class="flex items-center space-x-6">
+                    <div class="flex items-center">
+                        <i class="fas fa-phone-alt text-primary mr-2"></i>
+                        <span>+971 4 267 2664</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="far fa-clock text-primary mr-2"></i>
+                        <span>Mon-Sat: 9:00am - 6:00pm</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="text-gray-600 hover:text-primary"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-primary"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-primary"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/97142672664" class="text-gray-600 hover:text-primary"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            <!-- Main Navigation -->
+            <nav class="flex justify-between items-center py-2">
+                <a href="index.html" class="flex items-center px-3">
+                    <img src="logo.jpg" alt="Al Nahar Steel LLC Logo" class="h-auto max-h-16 w-auto">
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="font-medium text-primary">Home</a>
+                    <a href="services.html" class="font-medium hover:text-primary">Services</a>
+                    <a href="our-works.html" class="font-medium hover:text-primary">Our Works</a>
+                    <a href="contact.html" class="font-medium hover:text-primary">Contact</a>
+                    <a href="contact.html" class="bg-primary hover:bg-green-800 text-white px-4 py-2 rounded">Get a Quote</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-500 hover:text-primary focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </nav>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden pb-4">
+                <a href="index.html" class="block py-2 text-primary">Home</a>
+                <a href="services.html" class="block py-2 hover:text-primary">Services</a>
+                <a href="our-works.html" class="block py-2 hover:text-primary">Our Works</a>
+                <a href="contact.html" class="block py-2 hover:text-primary">Contact</a>
+                <div class="mt-4">
+                    <a href="contact.html" class="inline-block bg-primary hover:bg-green-800 text-white px-4 py-2 rounded">Get a Quote</a>
+                </div>
+                <div class="mt-4 flex items-center">
+                    <i class="fas fa-phone-alt text-primary mr-2"></i>
+                    <a href="tel:+97142672664" class="hover:text-primary">+971 4 267 2664</a>
+                </div>
+                <div class="mt-2 flex items-center">
+                    <i class="far fa-clock text-primary mr-2"></i>
+                    <span>Mon-Sat: 9:00am - 6:00pm</span>
+                </div>
+                <div class="mt-4 flex space-x-4">
+                    <a href="#" class="text-gray-600 hover:text-primary"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-primary"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-primary"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/97142672664" class="text-gray-600 hover:text-primary"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="mt-4">
+                    <a href="https://wa.me/97142672664" class="flex items-center bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">
+                        <i class="fab fa-whatsapp mr-2 text-lg"></i>
+                        <span>Chat on WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with Video Background -->
+    <section class="relative">
+        <div class="video-container">
+            <!-- Video background -->
+            <video autoplay muted loop>
+                <source src="videoblocks-welding-on-an-industrial-plant_b_qh_u3nb__c30782ca706c014a0e06031ffae96be3__P360.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-overlay"></div>
+            <div class="container mx-auto px-4 h-full flex items-center video-content">
+                <div class="max-w-lg text-white">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Professional Steel Fabrication Services</h1>
+                    <p class="text-lg mb-6">Established in 1997, Al Nahar Steel specializes in all types of steel fabrication, stainless steel, crushers, sheds, aluminum works and more.</p>
+                    <div class="flex space-x-4">
+                        <a href="services.html" class="bg-primary hover:bg-green-800 text-white px-6 py-3 rounded">Our Services</a>
+                        <a href="contact.html" class="bg-white hover:bg-gray-100 text-secondary px-6 py-3 rounded">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-2">Our Services</h2>
+                <p class="max-w-2xl mx-auto text-gray-600">We offer a wide range of steel fabrication services to meet your industrial and commercial needs in Dubai and the UAE.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="service-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="welding.jpg" alt="Steel Fabrication" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                            <h3 class="text-xl font-bold text-white">Steel Fabrication</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600">Comprehensive steel fabrication services for industrial and commercial projects, with precision engineering and quality materials.</p>
+                        <a href="services.html" class="inline-block mt-4 text-primary hover:underline">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Service Card 2 -->
+                <div class="service-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="welding.jpg" alt="Stainless Steel Works" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                            <h3 class="text-xl font-bold text-white">Stainless Steel Works</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600">Specialized stainless steel fabrication for architectural features, industrial equipment, and commercial applications with superior finish.</p>
+                        <a href="services.html" class="inline-block mt-4 text-primary hover:underline">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Service Card 3 -->
+                <div class="service-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="welding.jpg" alt="Aluminum Works" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                            <h3 class="text-xl font-bold text-white">Aluminum Works</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600">Custom aluminum fabrication for lightweight, corrosion-resistant structures and components, perfect for modern architectural needs.</p>
+                        <a href="services.html" class="inline-block mt-4 text-primary hover:underline">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-10">
+                <a href="services.html" class="inline-block bg-primary hover:bg-green-800 text-white px-6 py-3 rounded">View All Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <div class="h-[400px] rounded-lg overflow-hidden">
+                        <img src="welding.jpg" alt="About Al Nahar Steel LLC" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold mb-4">About Al Nahar Steel LLC</h2>
+                    <p class="text-gray-600 mb-4">Established in 1997, Al Nahar Steel LLC is a leading steel fabrication company providing high-quality services across Dubai and the UAE. With over 25 years of experience and a team of skilled professionals, we deliver exceptional results that meet the highest standards.</p>
+                    <p class="text-gray-600 mb-6">Our commitment to quality, precision, and customer satisfaction has made us a trusted partner for businesses looking for reliable steel fabrication solutions in the region.</p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-primary mr-2"></i>
+                            <span>Certified Welders</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-primary mr-2"></i>
+                            <span>Quality Materials</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-primary mr-2"></i>
+                            <span>On-time Delivery</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-primary mr-2"></i>
+                            <span>Competitive Pricing</span>
+                        </div>
+                    </div>
+                    
+                    <a href="contact.html" class="inline-block bg-primary hover:bg-green-800 text-white px-6 py-3 rounded">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-2">Our Recent Works</h2>
+                <p class="max-w-2xl mx-auto text-gray-600">Take a look at some of our recent welding and fabrication projects.</p>
+            </div>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Project Images -->
+                <a href="our-works.html" class="block overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
+                    <img src="works/Screenshot 2025-05-10 214914.png" alt="Fabrication Project" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-500">
+                </a>
+                
+                <a href="our-works.html" class="block overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
+                    <img src="works/Screenshot 2025-05-10 214914.png" alt="Fabrication Project" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-500">
+                </a>
+                
+                <a href="our-works.html" class="block overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
+                    <img src="works/Screenshot 2025-05-10 214914.png" alt="Fabrication Project" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-500">
+                </a>
+                
+                <a href="our-works.html" class="block overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
+                    <img src="works/Screenshot 2025-05-10 214914.png" alt="Fabrication Project" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-500">
+                </a>
+                
+            </div>
+            
+            <div class="text-center mt-10">
+                <a href="our-works.html" class="inline-block bg-primary hover:bg-green-800 text-white px-6 py-3 rounded">View All Works</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-2">Why Choose Us</h2>
+                <p class="max-w-2xl mx-auto text-gray-600">We are committed to delivering high-quality welding and fabrication services that meet your specific requirements.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Feature 1 -->
+                <div class="text-center">
+                    <div class="bg-primary/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-medal text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Quality Workmanship</h3>
+                    <p class="text-gray-600">We take pride in delivering exceptional quality work that stands the test of time.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="text-center">
+                    <div class="bg-primary/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Experienced Team</h3>
+                    <p class="text-gray-600">Our team consists of skilled welders and fabricators with years of experience in the industry.</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="text-center">
+                    <div class="bg-primary/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-clock text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Timely Delivery</h3>
+                    <p class="text-gray-600">We understand the importance of deadlines and strive to deliver projects on time.</p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="text-center">
+                    <div class="bg-primary/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-hand-holding-usd text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Competitive Pricing</h3>
+                    <p class="text-gray-600">We offer competitive rates without compromising on quality or service.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-primary/10">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold mb-4">Ready to Start Your Project?</h2>
+                <p class="max-w-2xl mx-auto text-gray-600 mb-8">Contact us today to discuss your welding and fabrication needs. We'll provide a free consultation and quote for your project.</p>
+                <a href="contact.html" class="inline-block bg-primary hover:bg-green-800 text-white px-8 py-4 rounded-lg text-lg font-medium">Get a Free Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Company Info -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Al Nahar Steel LLC</h3>
+                    <p class="mb-4">Professional steel fabrication services for industrial and commercial needs in Dubai, UAE.</p>
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-map-marker-alt mr-2"></i>
+                        <span>42 4B St - Al Qusais Industrial Area 1 - Dubai - United Arab Emirates</span>
+                    </div>
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-phone-alt mr-2"></i>
+                        <span>+971 4 267 2664</span>
+                    </div>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="bg-gray-700 hover:bg-primary w-10 h-10 rounded-full flex items-center justify-center">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="bg-gray-700 hover:bg-primary w-10 h-10 rounded-full flex items-center justify-center">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="bg-gray-700 hover:bg-primary w-10 h-10 rounded-full flex items-center justify-center">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/97142672664" class="bg-gray-700 hover:bg-primary w-10 h-10 rounded-full flex items-center justify-center">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-primary">Home</a></li>
+                        <li><a href="services.html" class="hover:text-primary">Services</a></li>
+                        <li><a href="our-works.html" class="hover:text-primary">Our Works</a></li>
+                        <li><a href="contact.html" class="hover:text-primary">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Services -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Our Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="services.html" class="hover:text-primary">Steel Fabrication</a></li>
+                        <li><a href="services.html" class="hover:text-primary">Stainless Steel Works</a></li>
+                        <li><a href="services.html" class="hover:text-primary">Aluminum Works</a></li>
+                        <li><a href="services.html" class="hover:text-primary">Custom Fabrication</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3"></i>
+                            <span>42 4B St - Al Qusais Industrial Area 1 - Dubai - United Arab Emirates</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3"></i>
+                            <span>+971 4 267 2664</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3"></i>
+                            <span>info@alnaharsteel.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-clock mr-3"></i>
+                            <span>Mon-Sat: 9:00am - 6:00pm</span>
+                        </li>
+                    </ul>
+                    <a href="https://maps.app.goo.gl/Arj8tERAc4P4sz1U9" target="_blank" class="inline-block mt-4 text-white hover:text-primary">View on Map</a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p>&copy; 2023 Al Nahar Steel LLC. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html> 

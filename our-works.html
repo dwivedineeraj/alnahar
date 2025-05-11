@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Works - Al Nahar Steel LLC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2e8b57',
+                        secondary: '#2c3e50',
+                        dark: '#1a1a1a',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 16px;
+            padding: 20px;
+        }
+        
+        .gallery-item {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .lightbox-img {
+            width: auto;
+            max-width: 100%;
+            max-height: 80vh;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border-radius: 4px;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        
+        .lightbox-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .lightbox-prev, .lightbox-next {
+            color: white;
+            font-size: 24px;
+            background-color: rgba(0,0,0,0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .lightbox-prev:hover, .lightbox-next:hover {
+            background-color: rgba(46, 139, 87, 0.8);
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800">
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4">
+            <!-- Top Bar -->
+            <div class="hidden md:flex justify-between py-2 border-b border-gray-200">
+                <div class="flex items-center space-x-6">
+                    <div class="flex items-center">
+                        <i class="fas fa-phone-alt text-primary mr-2"></i>
+                        <span>+971 4 267 2664</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="far fa-clock text-primary mr-2"></i>
+                        <span>Mon-Sat: 9:00am - 6:00pm</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="text-gray-600 hover:text-primary"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-primary"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-primary"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/97142672664" class="text-gray-600 hover:text-primary"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            <!-- Main Navigation -->
+            <nav class="flex justify-between items-center py-2">
+                <a href="index.html" class="flex items-center px-3">
+                    <img src="logo.jpg" alt="Al Nahar Steel LLC Logo" class="h-auto max-h-16 w-auto">
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="font-medium hover:text-primary">Home</a>
+                    <a href="services.html" class="font-medium hover:text-primary">Services</a>
+                    <a href="our-works.html" class="font-medium text-primary">Our Works</a>
+                    <a href="contact.html" class="font-medium hover:text-primary">Contact</a>
+                    <a href="contact.html" class="bg-primary hover:bg-green-800 text-white px-4 py-2 rounded">Get a Quote</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-500 hover:text-primary focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </nav>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden pb-4">
+                <a href="index.html" class="block py-2 hover:text-primary">Home</a>
+                <a href="services.html" class="block py-2 hover:text-primary">Services</a>
+                <a href="our-works.html" class="block py-2 text-primary">Our Works</a>
+                <a href="contact.html" class="block py-2 hover:text-primary">Contact</a>
+                <div class="mt-4">
+                    <a href="contact.html" class="inline-block bg-primary hover:bg-green-800 text-white px-4 py-2 rounded">Get a Quote</a>
+                </div>
+                <div class="mt-4 flex items-center">
+                    <i class="fas fa-phone-alt text-primary mr-2"></i>
+                    <a href="tel:+97142672664" class="hover:text-primary">+971 4 267 2664</a>
+                </div>
+                <div class="mt-2 flex items-center">
+                    <i class="far fa-clock text-primary mr-2"></i>
+                    <span>Mon-Sat: 9:00am - 6:00pm</span>
+                </div>
+                <div class="mt-4 flex space-x-4">
+                    <a href="#" class="text-gray-600 hover:text-primary"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-primary"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-primary"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/97142672664" class="text-gray-600 hover:text-primary"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="mt-4">
+                    <a href="https://wa.me/97142672664" class="flex items-center bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">
+                        <i class="fab fa-whatsapp mr-2 text-lg"></i>
+                        <span>Chat on WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="bg-gray-100 py-10">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold mb-2">Our Works</h1>
+            <div class="flex items-center text-sm text-gray-600">
+                <a href="index.html" class="hover:text-primary">Home</a>
+                <span class="mx-2">/</span>
+                <span class="text-primary">Our Works</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Filter Categories -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <!-- <h2 class="text-3xl font-bold mb-4">Our Projects</h2> -->
+                <p class="max-w-3xl mx-auto text-gray-600">Explore our completed projects showcasing our expertise in steel fabrication, stainless steel works, aluminum works, and more.</p>
+            </div>
+            
+            <!-- Filter Buttons -->
+            <!-- <div class="flex flex-wrap justify-center mb-10 space-x-2 space-y-2">
+                <button class="filter-btn bg-primary text-white px-4 py-2 rounded m-1" data-filter="all">All Projects</button>
+                <button class="filter-btn bg-white text-gray-700 px-4 py-2 rounded m-1 hover:bg-gray-100" data-filter="steel-fabrication">Steel Fabrication</button>
+                <button class="filter-btn bg-white text-gray-700 px-4 py-2 rounded m-1 hover:bg-gray-100" data-filter="stainless-steel">Stainless Steel</button>
+                <button class="filter-btn bg-white text-gray-700 px-4 py-2 rounded m-1 hover:bg-gray-100" data-filter="aluminum-works">Aluminum Works</button>
+                <button class="filter-btn bg-white text-gray-700 px-4 py-2 rounded m-1 hover:bg-gray-100" data-filter="industrial">Industrial Projects</button>
+            </div> -->
+            
+            <!-- Portfolio Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Project 1 -->
+                <div class="portfolio-item steel-fabrication overflow-hidden rounded-lg shadow-md group">
+                    <div class="relative">
+                        <img src="welding.jpg" alt="Steel Fabrication Project" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+                            <a href="#" class="bg-primary text-white px-4 py-2 rounded-full">View Details</a>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold mb-2">Industrial Structure Fabrication</h3>
+                        <p class="text-gray-600 text-sm">Custom steel structure fabrication for an industrial facility in Dubai.</p>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="portfolio-item stainless-steel overflow-hidden rounded-lg shadow-md group">
+                    <div class="relative">
+                        <img src="welding.jpg" alt="Stainless Steel Project" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+                            <a href="#" class="bg-primary text-white px-4 py-2 rounded-full">View Details</a>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold mb-2">Stainless Steel Kitchen Equipment</h3>
+                        <p class="text-gray-600 text-sm">Custom stainless steel equipment for a commercial kitchen in a luxury hotel.</p>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="portfolio-item aluminum-works overflow-hidden rounded-lg shadow-md group">
+                    <div class="relative">
+                        <img src="welding.jpg" alt="Aluminum Works Project" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+                            <a href="#" class="bg-primary text-white px-4 py-2 rounded-full">View Details</a>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold mb-2">Aluminum Facade Elements</h3>
+                        <p class="text-gray-600 text-sm">Custom aluminum facade elements for a modern commercial building.</p>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="portfolio-item industrial overflow-hidden rounded-lg shadow-md group">
+                    <div class="relative">
+                        <img src="welding.jpg" alt="Industrial Project" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+                            <a href="#" class="bg-primary text-white px-4 py-2 rounded-full">View Details</a>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold mb-2">Industrial Crusher Installation</h3>
+                        <p class="text-gray-600 text-sm">Custom-designed and fabricated industrial crusher for a manufacturing plant.</p>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="portfolio-item steel-fabrication overflow-hidden rounded-lg shadow-md group">
+                    <div class="relative">
+                        <img src="welding.jpg" alt="Steel Fabrication Project" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+                            <a href="#" class="bg-primary text-white px-4 py-2 rounded-full">View Details</a>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold mb-2">Industrial Shed Construction</h3>
+                        <p class="text-gray-600 text-sm">Custom steel fabrication for a large industrial shed in Al Quoz Industrial Area.</p>
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="portfolio-item stainless-steel overflow-hidden rounded-lg shadow-md group">
+                    <div class="relative">
+                        <img src="welding.jpg" alt="Stainless Steel Project" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+                            <a href="#" class="bg-primary text-white px-4 py-2 rounded-full">View Details</a>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold mb-2">Stainless Steel Architectural Features</h3>
+                        <p class="text-gray-600 text-sm">Custom stainless steel decorative elements for a luxury residence in Dubai.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Client Testimonials</h2>
+                <p class="max-w-3xl mx-auto text-gray-600">Here's what our clients have to say about our steel fabrication services and the quality of our work.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">"Al Nahar Steel delivered exceptional quality on our industrial project. Their attention to detail and commitment to deadlines was impressive. Highly recommended for any steel fabrication needs."</p>
+                    <div class="flex items-center">
+                        <div class="mr-4">
+                            <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center text-xl font-bold text-white">A</div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Ahmed Al Mansouri</h4>
+                            <p class="text-sm text-gray-500">Project Manager, Global Construction LLC</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">"We've worked with Al Nahar Steel on multiple projects over the years. Their craftsmanship is outstanding, and they always deliver on time and within budget. A trusted partner for all our steel fabrication requirements."</p>
+                    <div class="flex items-center">
+                        <div class="mr-4">
+                            <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center text-xl font-bold text-white">S</div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Sarah Thompson</h4>
+                            <p class="text-sm text-gray-500">Operations Director, Dubai Development Co.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">"The team at Al Nahar Steel is professional and skilled. They understood our requirements perfectly and delivered a high-quality stainless steel installation for our restaurant. Excellent service from start to finish."</p>
+                    <div class="flex items-center">
+                        <div class="mr-4">
+                            <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center text-xl font-bold text-white">M</div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Mohammed Al Hashimi</h4>
+                            <p class="text-sm text-gray-500">Owner, Luxury Dining Group</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-secondary">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-white mb-4">Ready to Start Your Project?</h2>
+                <p class="text-lg text-gray-300 mb-8 max-w-3xl mx-auto">Contact us today to discuss your steel fabrication needs and get a personalized quote for your project.</p>
+                <a href="contact.html" class="inline-block bg-primary hover:bg-green-800 text-white px-8 py-4 rounded-lg text-lg">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Company Info -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Al Nahar Steel LLC</h3>
+                    <p class="mb-4">Professional steel fabrication services for industrial and commercial needs in Dubai, UAE.</p>
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-map-marker-alt mr-2"></i>
+                        <span>42 4B St - Al Qusais Industrial Area 1 - Dubai - United Arab Emirates</span>
+                    </div>
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-phone-alt mr-2"></i>
+                        <span>+971 4 267 2664</span>
+                    </div>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="bg-gray-700 hover:bg-primary w-10 h-10 rounded-full flex items-center justify-center">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="bg-gray-700 hover:bg-primary w-10 h-10 rounded-full flex items-center justify-center">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="bg-gray-700 hover:bg-primary w-10 h-10 rounded-full flex items-center justify-center">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/97142672664" class="bg-gray-700 hover:bg-primary w-10 h-10 rounded-full flex items-center justify-center">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-primary">Home</a></li>
+                        <li><a href="services.html" class="hover:text-primary">Services</a></li>
+                        <li><a href="our-works.html" class="hover:text-primary">Our Works</a></li>
+                        <li><a href="contact.html" class="hover:text-primary">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Services -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Our Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="services.html" class="hover:text-primary">Steel Fabrication</a></li>
+                        <li><a href="services.html" class="hover:text-primary">Stainless Steel Works</a></li>
+                        <li><a href="services.html" class="hover:text-primary">Aluminum Works</a></li>
+                        <li><a href="services.html" class="hover:text-primary">Custom Fabrication</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Info</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3"></i>
+                            <span>42 4B St - Al Qusais Industrial Area 1 - Dubai - United Arab Emirates</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3"></i>
+                            <span>+971 4 267 2664</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3"></i>
+                            <span>info@alnaharsteel.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="far fa-clock mr-3"></i>
+                            <span>Mon-Sat: 9:00am - 6:00pm</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p>&copy; 2023 Al Nahar Steel LLC. All rights reserved.</p>
+                    <div class="mt-4 md:mt-0">
+                        <ul class="flex space-x-6">
+                            <li><a href="#" class="hover:text-primary">Privacy Policy</a></li>
+                            <li><a href="#" class="hover:text-primary">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for filtering portfolio items -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Portfolio filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(filterBtn => {
+                    filterBtn.classList.remove('bg-primary', 'text-white');
+                    filterBtn.classList.add('bg-white', 'text-gray-700');
+                });
+                
+                // Add active class to clicked button
+                btn.classList.remove('bg-white', 'text-gray-700');
+                btn.classList.add('bg-primary', 'text-white');
+                
+                const filterValue = btn.getAttribute('data-filter');
+                
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all') {
+                        item.style.display = 'block';
+                    } else if (item.classList.contains(filterValue)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
